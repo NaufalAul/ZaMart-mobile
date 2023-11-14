@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zamart/menu.dart';
+import 'package:zamart/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());

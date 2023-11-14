@@ -41,7 +41,7 @@ Ketika memilih antara `StatelessWidget` dan `StatefulWidget`, pertimbangkan kebu
 4. Memindahkan kode pada file `main.dart` pada bagian  class `MyHomePage` dan `_MyHomePage` ke file `menu.dart`.
 5. Menambahkan baris `import 'package:inventory_manager/menu.dart';` kedalam file `main.dart` agar kelas `MyHomePage` dapat digunakan pada `main.dart`. 
 6. Mengubah sifat widget MyHomePage menjadi stateless dengan mengubah kode pada class MyHomePage menjadi seperti berikut.
-    ```
+    ```dart
     class MyHomePage extends StatelessWidget {
     MyHomePage({Key? key}) : super(key: key);
 
@@ -53,7 +53,7 @@ Ketika memilih antara `StatelessWidget` dan `StatefulWidget`, pertimbangkan kebu
     ```
 7. Mengubah baris kode `MyHomePage(title: 'Flutter Demo Home Page')` pada file `main.dart` menjadi `MyHomePage()`.
 8. Membuat class item, dan menambahkan atribut color (soal bonus).
-    ```
+    ```dart
     class Item {
         final String name;
         final IconData icon;
@@ -63,7 +63,7 @@ Ketika memilih antara `StatelessWidget` dan `StatefulWidget`, pertimbangkan kebu
         }
     ```
 9. Menambahkan baris kode berikut untuk menambahkan item-item yang akan dibuat di bawah constructor pada class `MyHomePage`.
-    ```
+    ```dart
     final List<ShopItem> items = [
       ShopItem("Lihat Item", Icons.checklist, Color(0xFFEA9085)),
       ShopItem("Tambah Item", Icons.add_shopping_cart, Color(0xFF6E5773)),
@@ -72,7 +72,7 @@ Ketika memilih antara `StatelessWidget` dan `StatefulWidget`, pertimbangkan kebu
     ```
 
 10. Menambahkan kode berikut di dalam Widget build pada class MyHomePage.
-    ```
+    ```dart
     return Scaffold(
           appBar: AppBar(
             backgroundColor: Color(0xFFE9E2D0),
@@ -121,7 +121,7 @@ Ketika memilih antara `StatelessWidget` dan `StatefulWidget`, pertimbangkan kebu
     ```
 
 11. Membuat _stateless_ widget `ItemCard` untuk menampilkan card.
-    ```
+    ```dart
     class ShopCard extends StatelessWidget {
         final ShopItem item;
 
@@ -169,3 +169,45 @@ Ketika memilih antara `StatelessWidget` dan `StatefulWidget`, pertimbangkan kebu
     ```
 
 12. Menghapus class `_MyHomePage` karena widget `MyHomePage` sudah berubah menjadi stateless sehingga class` _MyHomePage` tidak dibutuhkan.
+
+# Tugas 8
+
+### Perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
+
+  Navigator.push() dan Navigator.pushReplacement() adalah dua metode yang digunakan untuk menavigasi antar halaman (routes) dalam aplikasi Flutter. Berikut adalah perbedaan antara keduanya:
+  - Navigator.push()
+    - Menggunakan metode ini untuk menambahkan halaman baru ke dalam tumpukan navigasi.
+    - Tumpukan navigasi akan menahan semua halaman sebelumnya.
+    - Ketika kembali dari halaman yang ditambahkan, maka kembali ke halaman sebelumnya di tumpukan.
+    - Contoh:
+      ....
+  -  Navigator.pushReplacement()
+    - Menggantikan halaman saat ini dengan halaman baru.
+    - Tumpukan navigasi tetap memiliki panjang yang sama setelah navigasi.
+    - Cocok digunakan ketika ingin menggantikan halaman yang sudah ada dengan halaman baru.
+    - Contoh:
+      ...
+
+
+### Layout widget pada Flutter dan konteks penggunaannya masing-masing!
+
+* `Container` digunakan untuk mengelilingi dan menyesuaikan elemen-elemen lain. Container sering digunakan untuk mengatur margin, padding, dan dekorasi.
+* `Row` digunakan untuk menempatkan widget sejajar secara horizontal.
+* `Column` digunakan untuk menempatkan widget secara vertikal.
+* `ListView` digunakan untuk menampilkan daftar elemen secara berurutan, baik secara horizontal atau vertikal.
+* `Stack` digunakan untuk menumpuk widget di atas satu sama lain.
+* `Expanded` digunakan untuk memberikan widget parent ruang tambahan yang tersedia dalam arah tertentu.
+* `GridView` digunakan untuk menampilkan elemen dalam susunan grid.
+* `Card` digunakan untuk membuat kotak yang bisa berisi teks, gambar, atau widget lainnya.
+* `SizedBox` digunakan untuk memberikan dimensi tertentu pada widget.
+* `Warp` digunakan untuk membungkus widget yang dapat berukuran besar dan memindahkannya ke baris berikutnya jika tidak muat.
+
+### Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!
+
+Dalam tugas ini, terdapat beberapa elemen input pada form. Elemen input yang digunakan melibatkan pengguna untuk memasukkan data atau informasi tertentu. Elemen input yang digunakan pada tugas ini adalah `TextFormField`. Pada tugas ini, `TextFormField` digunakan pada tiga input yaitu "Nama Item", "Harga", dan "Deskripsi". Dalam `TextFormField` juga ditambahkan beberapa validator untuk memastikan input yang diberikan oleh pengguna sesuai dengan input form masing-masing. Penggunaan `TextFormField` memberikan fleksibilitas, validasi, dan respons yang dibutuhkan dalam hal ini.
+
+### Bagaimana penerapan clean architecture pada aplikasi Flutter?
+
+...
+
+### Implementasi _checklist_ dari awal sampai akhir
