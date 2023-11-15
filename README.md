@@ -180,13 +180,17 @@ Ketika memilih antara `StatelessWidget` dan `StatefulWidget`, pertimbangkan kebu
     - Tumpukan navigasi akan menahan semua halaman sebelumnya.
     - Ketika kembali dari halaman yang ditambahkan, maka kembali ke halaman sebelumnya di tumpukan.
     - Contoh:
-      ....
-  -  Navigator.pushReplacement()
+      ```dart
+      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const ShopFormPage()));
+      ```
+  - Navigator.pushReplacement()
     - Menggantikan halaman saat ini dengan halaman baru.
     - Tumpukan navigasi tetap memiliki panjang yang sama setelah navigasi.
     - Cocok digunakan ketika ingin menggantikan halaman yang sudah ada dengan halaman baru.
     - Contoh:
-      ...
+      ```dart
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  const ShopFormPage()));
+      ```
 
 
 ### Layout widget pada Flutter dan konteks penggunaannya masing-masing!
@@ -208,6 +212,15 @@ Dalam tugas ini, terdapat beberapa elemen input pada form. Elemen input yang dig
 
 ### Bagaimana penerapan clean architecture pada aplikasi Flutter?
 
-...
+Clean architecture adalah pola desain perangkat lunak yang membantu para deloveper menulis kode yang dapat dipelihara dan dapat di-scale. Dengan memisahkan lapisan presentasi, lapisan domain, dan lapisan data, developer dimudahkan untuk memodifikasi dan memperluas kode tanpa menambahkan kompleksitas yang tidak perlu. Salah satu contoh penerapan clean architecture pada flutter adalah dengan membuat direktori yang membedakan file dart untuk widget, screen, dan sebagainya.
 
 ### Implementasi _checklist_ dari awal sampai akhir
+1. Membuat file item_form.dart serta mengisi dengan form yang memiliki input untuk nama, kategori, jumlah, harga, dan deskripsi. 
+2. Membuat file item_card.dart dan melakukan cut pada kode tentang ShopCard pada menu.dart ke item_card.
+3. Membuat sebuah class item pada item_card.dart untuk mendefinisikan item yang di save pada item_form.dart.
+4. Membuat sebuah array pada file item_form.dart untuk menyimpan item yang di-save pada form.
+5. Membuat file item_list.dart serta mengisi dengan kode yang dapat menampilkan item yang di-save pada item_form.dart
+6. Membuat file left_drawer.dart dan mengisinya dengan drawer yang bisa navigasi ke home, item_form, dan item_list.
+7. Membuat dua direktori baru pada direktori lib, yaitu widgets dan screens.
+8. Memindahkan file item_card.dart dan left_drawer.dart ke direktori widgets dan lakukan refaktor kode (dilakukan secara otomatis oleh ekstensi).
+9. Memindahkan file item_form.dart, item_list.dart, dan menu.dart ke direktori screens dan lakukan refaktor kode (dilakukan secara otomatis oleh ekstensi).
