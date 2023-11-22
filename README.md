@@ -224,3 +224,59 @@ Clean architecture adalah pola desain perangkat lunak yang membantu para delovep
 7. Membuat dua direktori baru pada direktori lib, yaitu widgets dan screens.
 8. Memindahkan file item_card.dart dan left_drawer.dart ke direktori widgets dan lakukan refaktor kode (dilakukan secara otomatis oleh ekstensi).
 9. Memindahkan file item_form.dart, item_list.dart, dan menu.dart ke direktori screens dan lakukan refaktor kode (dilakukan secara otomatis oleh ekstensi).
+
+# Tugas 9
+
+### Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+
+Bisa, pengambilan data tanpa menggunakan model (parsing dinamis) memiliki kelebihan dan kekurangan yang masing-masing. Kelebihannya terletak pada fleksibilitasnya dan penyederhanaan kode. Namun, kekurangannya mencakup ketidakpastian dalam tipe data, kemunculan error yang hanya terlihat saat kode dieksekusi, dan kesulitan dalam proses debugging. Menurut pendapat saya, pengambilan data tanpa model lebih sesuai digunakan ketika mengambil data dari API yang memiliki respons dengan struktur dinamis dan sulit untuk dimodelkan. Namun, dalam konteks tugas ini, lebih disarankan untuk menggunakan pendekatan pembuatan model karena dapat mengatasi kelemahan dari pengambilan data tanpa model, meskipun memerlukan tambahan kode yang cukup signifikan. Selain itu, respons dari API dalam konteks tugas ini juga sudah ditetapkan atau konsisten.
+
+### Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+
+CookieRequest adalah kelas yang digunakan untuk mengelola cookie di aplikasi Flutter. Kelas ini menyediakan metode untuk menambahkan, menghapus, dan memeriksa cookie.Fungsi utama dari CookieRequest adalah untuk menyimpan cookie dari server web. Cookie ini kemudian dapat digunakan untuk autentikasi pengguna, menyimpan preferensi pengguna, atau untuk tujuan lainnya. Instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter agar semua komponen dapat mengakses cookie yang sama. Hal ini penting untuk aplikasi yang menggunakan cookie untuk autentikasi pengguna, karena semua komponen perlu memiliki akses ke cookie pengguna untuk memverifikasi autentikasi pengguna.
+
+### Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.
+
+1. Menambahkan dependensi http ke proyek; dependensi ini digunakan untuk bertukar HTTP request.
+2. Membuat model sesuai dengan respons dari data yang berasal dari web service tersebut.
+3. Membuat http request ke web service menggunakan dependensi http.
+4. Mengkonversikan objek yang didapatkan dari web service ke model yang telah kita buat di langkah kedua.
+5. Menampilkan data yang telah dikonversi ke aplikasi dengan FutureBuilder.
+6. JSON difetch ke sesuai urlnya dengan header json
+7. JSON yang telah difetch akan disesuaikan bodynya menuju model Item sesuai dengan properti-properti yang ada.
+
+### Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+
+1. Flutter menampilkan form untuk mengisi data login.
+2. Setelah data diinput dan menekan tombol login, flutter melakukan http request ke Django untuk login dengan data yang sudah diinput.
+4. Django akan melakukan proses login dan memberikan respons sesuai keberhasilan login
+5. Jika berhasil login maka flutter akan melakukan navigasi ke menu
+
+### Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
+
+1. `FutureBuilder` digunakan untuk menangani hasil dari suatu Future tanpa harus secara eksplisit menangani pengelolaannya. Future disini berguna untuk melakukan operasi asinkron dan salah satu contoh yang dipakai adalah melakukan request ke server.
+2. `ListView` digunakan untuk menampilkan data secara berurutan.
+3. `InkWell` digunakan untuk menambahkan efek respons saat widget tersebut ditekan.
+4. `SizedBox` digunakan untuk menentukan ukuran dari suatu ruang kosong.
+5. `Text` digunakan untuk menampilkan teks.
+6. `Column` digunakan untuk menyusun dan menampilkan child widget secara vertikal.
+7. `ShopCard` digunakan sebagai button atau card untuk menunjukkan hal yang dapat dilakukan.
+8. `LeftDrawer` digunakan sebagai widget untuk menampilkan drawer.
+9. `Drawer` digunakan sebagai tempat drawer di sisi kiri halaman yang berupa menu/navigasi.
+10. `Form` digunakan sebagai wadah bagi beberapa input field widget.
+11. `TextFormField` digunakan untuk menampilkan input teks.
+12. `SingleChildScrollView` digunakan untuk membuat child widget di dalamnya menjadi scrollable jika melebihi ukuran layar.
+13. `ElevatedButton` adalah Tombol yang memiliki efek elevation ketika ditekan.
+14. `AlertDialog` digunakan untuk menampilkan alert dialog atau seperti modal.
+
+### Implementasi _checklist_ dari awal sampai akhir
+
+1. Menambahkan app baru pada Django, yaitu authentication untuk melakukan autentikasi dan menambah view untuk melakukan proses penambahan data.
+2. Install package provider dan pbp_django_auth.
+3. Membuat objek Provider yang berfungsi membagikan instance CookieRequest ke semua komponen.
+4. Membuat halaman login yang meminta input username dan password serta melakukan request ke url auth/login/ untuk melakukan proses autentikasi.
+5. Membuat model item yang berfungsi sebagai pemrosesan respons server agar dapat ditampilkan ke UI dan pemrosesan data input untuk melakukan request ke server.
+6. Membuat halaman item_list yang berfungsi untuk menampilkan semua item yang ada (fetch ke server). Tiap item hanya menampilkan name, amount, price, description, dan category.
+7. Melakukan routing pada left drawer dan menu ke item list.
+8. Integrasi item form dengan API untuk menambahkan data ke server.
+9. Melakukan aksi logout jika menu logout ditekan.
